@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Atommotec</title>
+  <meta name="description" content="Atommotec — soluções completas em tecnologia para pessoas e empresas em Igarapé, São Joaquim de Bicas e região. Manutenção, redes, hardware e planos mensais.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Atommotec — Atommo Tecnologia">
+  <meta name="theme-color" content="#0C1E52">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://atommotec.com.br/">
+  <meta property="og:title"       content="Atommotec">
+  <meta property="og:description" content="Soluções completas em tecnologia para pessoas e empresas em Igarapé e região. Manutenção, redes, hardware e planos mensais.">
+  <meta property="og:image"       content="images/logo.png">
+  <meta property="og:locale"      content="pt_BR">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Atommotec">
+  <meta name="twitter:description" content="Soluções em tecnologia para pessoas e empresas em Igarapé - MG.">
+  <meta name="twitter:image"       content="images/logo.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="apple-touch-icon"      href="images/logo.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    /* ── RESET ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; overflow-x: hidden; -webkit-text-size-adjust: 100%; }
+    body { font-family: var(--ff-corpo); color: var(--texto); background: var(--branco); line-height: 1.7; }
+    a { text-decoration: none; color: inherit; -webkit-tap-highlight-color: transparent; }
+    button { -webkit-tap-highlight-color: transparent; touch-action: manipulation; cursor: pointer; }
+    img { max-width: 100%; display: block; }
+    ul { list-style: none; }
+
+    /* ── VARIÁVEIS ── */
+    :root {
+      --navy:       #0C1E52;
+      --navy-dark:  #070E2A;
+      --azul:       #1548B0;
+      --azul-2:     #2060CC;
+      --ciano:      #28AADC;
+      --ciano-2:    #4CC4F0;
+      --branco:     #FFFFFF;
+      --cinza-bg:   #EBF2FC;
+      --cinza-2:    #D0E2F5;
+      --texto:      #0E1D3A;
+      --texto-leve: #526480;
+      --header-h:   72px;
+      --radius:     8px;
+      --sombra:     0 4px 24px rgba(12, 30, 82, 0.12);
+      --ff-titulo:  'Exo 2', sans-serif;
+      --ff-corpo:   'Inter', sans-serif;
+    }
+
+    /* ── PROGRESSO ── */
+    .scroll-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: linear-gradient(90deg, var(--ciano), var(--ciano-2)); z-index: 2001; transition: width .08s linear; }
+
+    .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+    section { padding: 96px 0; }
+
+    /* ────────────────────────────────────
+       HEADER
+    ──────────────────────────────────── */
+    #header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--header-h); background: var(--branco); border-bottom: 1px solid rgba(12,30,82,.1); transition: box-shadow .3s; }
+    #header.scrolled { box-shadow: 0 4px 24px rgba(12,30,82,.14); }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; height: 100%; }
+    .logo-wrap img { height: 52px; width: auto; }
+
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a { color: var(--navy); font-family: var(--ff-titulo); font-size: .78rem; font-weight: 600; letter-spacing: .5px; text-transform: uppercase; transition: color .2s; position: relative; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--ciano); transition: width .25s; }
+    .nav-links a:hover { color: var(--ciano); }
+    .nav-links a:hover::after, .nav-links a.nav-active::after { width: 100%; }
+    .nav-links a.nav-active { color: var(--azul); }
+
+    .nav-cta { background: var(--azul) !important; color: var(--branco) !important; padding: 9px 20px; border-radius: var(--radius); font-weight: 700 !important; transition: background .2s, transform .15s !important; }
+    .nav-cta::after { display: none !important; }
+    .nav-cta:hover { background: var(--azul-2) !important; transform: translateY(-1px); color: var(--branco) !important; }
+
+    /* ── BOTÃO VITRINE NAV ── */
+    .nav-vitrine {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 16px; background: rgba(40,170,220,.12);
+      color: var(--ciano) !important; font-family: var(--ff-titulo);
+      font-size: .74rem !important; font-weight: 700; letter-spacing: .5px;
+      text-transform: uppercase; border-radius: var(--radius);
+      border: 1.5px solid rgba(40,170,220,.4);
+      transition: background .2s, color .2s, transform .15s !important;
+    }
+    .nav-vitrine::after { display: none !important; }
+    .nav-vitrine:hover { background: var(--ciano) !important; color: var(--navy) !important; border-color: var(--ciano); transform: translateY(-1px); }
+
+    /* ── BOTÃO VITRINE HERO ── */
+    .btn-vitrine-hero {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: .85rem 1.75rem; background: rgba(40,170,220,.12);
+      color: var(--ciano-2); font-family: var(--ff-titulo);
+      font-size: .85rem; font-weight: 700; letter-spacing: .5px;
+      border-radius: var(--radius); border: 2px solid rgba(40,170,220,.5);
+      overflow: hidden; position: relative;
+      transition: background .2s, color .2s, transform .15s, box-shadow .2s;
+    }
+    .btn-vitrine-hero:hover {
+      background: var(--ciano); color: var(--navy);
+      border-color: var(--ciano); transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(40,170,220,.4);
+    }
+
+    /* ── SEÇÃO VITRINE ── */
+    #vitrine {
+      background:
+        linear-gradient(rgba(12,30,82,.91), rgba(12,30,82,.91)),
+        url('images/bg-planos.jpg') center / cover no-repeat;
+      background-attachment: fixed, fixed;
+      position: relative; overflow: hidden; text-align: center;
+    }
+    #vitrine::before {
+      content: ''; position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(40,170,220,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(40,170,220,.05) 1px, transparent 1px);
+      background-size: 56px 56px; pointer-events: none;
+    }
+    .vitrine-content { max-width: 760px; margin: 0 auto; position: relative; z-index: 1; }
+    .vitrine-desc { font-size: 1.05rem; color: rgba(255,255,255,.75); max-width: 580px; margin: 0 auto 44px; line-height: 1.85; }
+    .vitrine-features { display: flex; gap: 36px; justify-content: center; margin-bottom: 48px; flex-wrap: wrap; }
+    .vitrine-feat { display: flex; align-items: center; gap: 10px; color: var(--ciano-2); font-family: var(--ff-titulo); font-size: .82rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .vitrine-feat i { font-size: 1rem; }
+    .btn-vitrine-grande {
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: 17px 44px; background: var(--ciano); color: var(--navy);
+      font-family: var(--ff-titulo); font-size: .95rem; font-weight: 800;
+      letter-spacing: .5px; text-transform: uppercase;
+      border-radius: var(--radius); border: 2px solid var(--ciano);
+      transition: background .2s, border-color .2s, transform .2s, box-shadow .2s;
+    }
+    .btn-vitrine-grande:hover {
+      background: var(--ciano-2); border-color: var(--ciano-2);
+      transform: translateY(-3px); box-shadow: 0 10px 36px rgba(40,170,220,.45);
+      color: var(--navy);
+    }
+    @media (max-width: 1023px) { #vitrine { background-attachment: scroll, scroll; } }
+    @media (max-width: 599px) {
+      .btn-vitrine-hero { width: 100%; justify-content: center; min-height: 48px; }
+      .vitrine-features { gap: 18px; }
+      .vitrine-feat { font-size: .75rem; }
+      .btn-vitrine-grande { padding: 14px 28px; font-size: .88rem; }
+    }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 6px; }
+    .hamburger span { display: block; width: 26px; height: 2px; background: var(--navy); border-radius: 2px; transition: .3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    #navMenu { display: none; position: fixed; top: var(--header-h); left: 0; right: 0; background: var(--navy); border-top: 2px solid var(--ciano); max-height: 0; overflow: hidden; transition: max-height .35s ease; z-index: 999; }
+    #navMenu.open { max-height: 500px; }
+    #navMenu ul { padding: 1rem 1.5rem 1.5rem; }
+    #navMenu ul li a { display: flex; align-items: center; padding: 14px 0; color: rgba(255,255,255,.85); font-family: var(--ff-titulo); font-size: .9rem; font-weight: 600; letter-spacing: .5px; text-transform: uppercase; border-bottom: 1px solid rgba(255,255,255,.08); transition: color .2s, padding-left .2s; }
+    #navMenu ul li:last-child a { border-bottom: none; }
+    #navMenu ul li a:hover { color: var(--ciano); padding-left: 8px; }
+
+    /* ────────────────────────────────────
+       HERO
+    ──────────────────────────────────── */
+    #hero {
+      min-height: 100vh; min-height: 100svh;
+      padding-top: var(--header-h);
+      background:
+        linear-gradient(135deg, rgba(7,14,42,.93) 0%, rgba(12,30,82,.88) 45%, rgba(15,35,90,.91) 70%, rgba(7,14,42,.95) 100%),
+        url('images/bg-hero.jpg') center / cover no-repeat;
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+    }
+    /* Grid tech */
+    #hero::before {
+      content: ''; position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(40,170,220,.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(40,170,220,.07) 1px, transparent 1px);
+      background-size: 56px 56px; pointer-events: none;
+    }
+    /* Brilho ciano */
+    #hero::after {
+      content: ''; position: absolute; top: -20%; right: -5%; width: 55%; height: 140%;
+      background: radial-gradient(ellipse, rgba(40,170,220,.1) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; position: relative; z-index: 1; }
+
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(40,170,220,.15); border: 1px solid rgba(40,170,220,.4); color: var(--ciano-2); font-family: var(--ff-titulo); font-size: .7rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; padding: 6px 14px; border-radius: 100px; margin-bottom: 24px; }
+
+    .hero-text h1 { font-family: var(--ff-titulo); font-size: clamp(2.8rem, 5.5vw, 4.5rem); color: var(--branco); line-height: 1.05; letter-spacing: 2px; margin-bottom: 16px; text-transform: uppercase; font-weight: 900; }
+    .hero-text h1 span { color: var(--ciano); }
+
+    .hero-text h2 { font-family: var(--ff-corpo); font-size: clamp(.95rem, 1.6vw, 1.05rem); color: rgba(255,255,255,.65); font-weight: 400; line-height: 1.85; max-width: 520px; margin-bottom: 16px; }
+
+    .hero-slogan { font-style: italic; font-size: 1rem; font-weight: 500; color: rgba(40,170,220,.9); margin-bottom: 40px; padding-left: 16px; max-width: 480px; line-height: 1.6; position: relative; }
+    .hero-slogan::before { content: ''; position: absolute; left: 0; top: 4px; width: 3px; height: calc(100% - 8px); background: var(--ciano); border-radius: 2px; }
+
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 52px; }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--ff-titulo); font-weight: 700; font-size: .85rem; letter-spacing: .5px; padding: .85rem 1.75rem; border-radius: var(--radius); border: none; transition: background .2s, color .2s, transform .15s, box-shadow .2s; }
+    .btn:active { transform: scale(.98); }
+    .btn-ciano { background: var(--ciano); color: var(--navy); }
+    .btn-ciano:hover { background: var(--ciano-2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(40,170,220,.4); color: var(--navy); }
+    .btn-outline-branco { background: rgba(255,255,255,.08); color: rgba(255,255,255,.9); border: 2px solid rgba(255,255,255,.4); }
+    .btn-outline-branco:hover { background: rgba(255,255,255,.16); border-color: rgba(255,255,255,.7); color: var(--branco); transform: translateY(-2px); }
+    .btn-azul { background: var(--azul); color: var(--branco); }
+    .btn-azul:hover { background: var(--azul-2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(21,72,176,.4); color: var(--branco); }
+
+    .hero-stats { display: flex; border-top: 1px solid rgba(255,255,255,.1); padding-top: 28px; }
+    .hero-stat { flex: 1; padding-right: 24px; border-right: 1px solid rgba(255,255,255,.1); }
+    .hero-stat:last-child { border-right: none; padding-right: 0; padding-left: 24px; }
+    .hero-stat:first-child { padding-left: 0; }
+    .hero-stat:nth-child(2) { padding-left: 24px; }
+    .hero-stat strong { display: block; font-family: var(--ff-titulo); font-size: 2.1rem; color: var(--ciano); line-height: 1; margin-bottom: 4px; }
+    .hero-stat span { font-size: .72rem; color: rgba(255,255,255,.45); font-weight: 600; letter-spacing: .5px; text-transform: uppercase; }
+
+    .hero-visual { display: flex; justify-content: center; align-items: center; }
+    .hero-card { background: rgba(255,255,255,.05); border: 1px solid rgba(40,170,220,.25); border-radius: 16px; padding: 40px 32px; text-align: center; position: relative; overflow: hidden; max-width: 400px; width: 100%; }
+    .hero-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--ciano), var(--ciano-2)); }
+    .hero-logo-bg { background: rgba(255,255,255,.95); border-radius: 10px; padding: 20px 28px; margin-bottom: 24px; }
+    .hero-logo-bg img { max-width: 220px; margin: 0 auto; }
+    .hero-checklist { display: flex; flex-direction: column; gap: 10px; }
+    .hero-check { display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,.06); border-radius: 8px; padding: 10px 14px; text-align: left; }
+    .hero-check i { color: var(--ciano); font-size: .9rem; flex-shrink: 0; }
+    .hero-check span { font-size: .82rem; color: rgba(255,255,255,.8); font-weight: 500; }
+
+    /* ── MARQUEE ── */
+    .marquee-strip { background: var(--azul); padding: 12px 0; overflow: hidden; white-space: nowrap; }
+    .marquee-track { display: inline-flex; animation: marquee 32s linear infinite; }
+    .marquee-item { display: inline-flex; align-items: center; color: rgba(255,255,255,.9); font-family: var(--ff-titulo); font-size: .7rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; padding: 0 32px; }
+    .marquee-sep { margin-left: 32px; color: var(--ciano); font-size: .5rem; }
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    /* ── HELPERS ── */
+    .section-eyebrow { display: inline-block; color: var(--azul); font-family: var(--ff-titulo); font-size: .72rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px; position: relative; padding: 0 20px; }
+    .section-eyebrow::before, .section-eyebrow::after { content: ''; position: absolute; top: 50%; width: 12px; height: 1px; background: var(--ciano); }
+    .section-eyebrow::before { right: 100%; transform: translateX(14px); }
+    .section-eyebrow::after  { left:  100%; transform: translateX(-14px); }
+    .section-eyebrow.left { padding: 0 20px 0 0; }
+    .section-eyebrow.left::before { display: none; }
+    .section-eyebrow.light { color: rgba(255,255,255,.7); }
+    .section-eyebrow.light::before, .section-eyebrow.light::after { background: var(--ciano); }
+
+    .section-title { font-family: var(--ff-titulo); font-size: clamp(1.8rem, 3.5vw, 2.6rem); letter-spacing: .5px; line-height: 1.15; margin-bottom: 16px; font-weight: 800; text-transform: uppercase; text-align: center; }
+    .section-title.left { text-align: left; }
+    .section-title.light { color: var(--branco); }
+    .section-title span { color: var(--ciano); }
+
+    .section-desc { font-size: 1rem; color: var(--texto-leve); max-width: 620px; margin: 0 auto 56px; text-align: center; line-height: 1.8; }
+    .section-desc.left { text-align: left; margin-left: 0; }
+    .section-desc.light { color: rgba(255,255,255,.65); }
+
+    .cyan-line { width: 48px; height: 3px; background: linear-gradient(90deg, var(--ciano), var(--ciano-2)); border-radius: 2px; margin-bottom: 24px; }
+    .cyan-line.center { margin: 0 auto 24px; }
+
+    /* ── SOBRE ── */
+    #sobre {
+      background:
+        linear-gradient(rgba(255,255,255,.94), rgba(255,255,255,.94)),
+        url('images/bg-sobre.jpg') center / cover no-repeat;
+      background-attachment: fixed, fixed;
+    }
+    .sobre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+    .sobre-text p { color: var(--texto-leve); line-height: 1.9; margin-bottom: 20px; font-size: .97rem; }
+    .sobre-text p strong { color: var(--texto); font-weight: 600; }
+
+    .mvv-grid { display: flex; flex-direction: column; gap: 14px; margin-top: 36px; }
+    .mvv-card { background: var(--cinza-bg); border: 1px solid var(--cinza-2); border-radius: 10px; padding: 22px 20px; border-left: 3px solid var(--ciano); }
+    .mvv-card h3 { font-family: var(--ff-titulo); font-size: .82rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--azul); margin-bottom: 6px; }
+    .mvv-card p { font-size: .88rem; color: var(--texto-leve); line-height: 1.7; margin: 0; }
+
+    .sobre-visual { display: flex; flex-direction: column; gap: 18px; }
+    .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; background: var(--cinza-bg); border: 1px solid var(--cinza-2); border-radius: 14px; padding: 28px 24px; position: relative; overflow: hidden; }
+    .stats-grid::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--navy), var(--azul), var(--ciano)); }
+    .stat-box { background: var(--branco); border-radius: 10px; padding: 20px 12px; text-align: center; border: 1px solid var(--cinza-2); }
+    .stat-box strong { display: block; font-family: var(--ff-titulo); font-size: 2rem; color: var(--azul); line-height: 1; margin-bottom: 4px; }
+    .stat-box span { font-size: .7rem; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; color: var(--texto-leve); }
+
+    .info-card { background: var(--navy); border-radius: 12px; padding: 22px 24px; position: relative; overflow: hidden; }
+    .info-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--ciano), var(--ciano-2)); }
+    .info-row { display: flex; align-items: center; gap: 14px; }
+    .info-ico { width: 42px; height: 42px; background: rgba(40,170,220,.15); border: 1px solid rgba(40,170,220,.3); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .info-ico i { color: var(--ciano); }
+    .info-txt label { display: block; font-family: var(--ff-titulo); font-size: .62rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--ciano); margin-bottom: 3px; }
+    .info-txt span { color: rgba(255,255,255,.8); font-size: .88rem; font-weight: 600; }
+
+    .horario-card { background: var(--cinza-bg); border: 1px solid var(--cinza-2); border-radius: 12px; padding: 24px; }
+    .horario-card h4 { font-family: var(--ff-titulo); font-size: .8rem; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--azul); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+    .horario-card h4 i { color: var(--ciano); }
+    .horario-card p { font-size: .88rem; color: var(--texto-leve); line-height: 1.9; margin: 0; }
+    .horario-card p strong { color: var(--texto); }
+
+    /* ── CARDS COM IMAGEM DE FUNDO ── */
+    .servico-card.has-bg {
+      background-color: transparent;
+      background-size: cover;
+      background-position: center;
+      border-color: rgba(40,170,220,.2);
+    }
+    .servico-card.has-bg h3 { color: var(--branco); }
+    .servico-card.has-bg p  { color: rgba(255,255,255,.78); }
+    .servico-card.has-bg .servico-icon {
+      background: rgba(40,170,220,.18);
+      border: 1px solid rgba(40,170,220,.3);
+    }
+    .servico-card.has-bg .servico-icon i { color: var(--ciano-2); }
+    .servico-card.has-bg .servico-badge {
+      background: rgba(40,170,220,.18);
+      border-color: rgba(40,170,220,.35);
+      color: var(--ciano-2);
+    }
+    .servico-card.has-bg:hover {
+      border-color: rgba(40,170,220,.5);
+      box-shadow: 0 16px 48px rgba(0,0,0,.4), 0 0 22px rgba(40,170,220,.2);
+    }
+    .servico-card.has-bg:hover::before { opacity: .85; }
+
+    /* Imagens individuais por card */
+    .srv-computadores { background-image: linear-gradient(rgba(9,22,56,.82), rgba(9,22,56,.82)), url('images/srv-computadores.jpg'); }
+    .srv-notebooks    { background-image: linear-gradient(rgba(9,22,56,.82), rgba(9,22,56,.82)), url('images/srv-notebooks.jpg'); }
+    .srv-redes        { background-image: linear-gradient(rgba(9,22,56,.82), rgba(9,22,56,.82)), url('images/srv-redes.jpg'); }
+    .srv-hardware     { background-image: linear-gradient(rgba(9,22,56,.82), rgba(9,22,56,.82)), url('images/srv-hardware.jpg'); }
+    .srv-remoto       { background-image: linear-gradient(rgba(9,22,56,.82), rgba(9,22,56,.82)), url('images/srv-remoto.jpg'); }
+    .srv-software     { background-image: linear-gradient(rgba(9,22,56,.82), rgba(9,22,56,.82)), url('images/srv-software.jpg'); }
+
+    /* ── SERVIÇOS ── */
+    #servicos {
+      background:
+        linear-gradient(rgba(235,242,252,.93), rgba(235,242,252,.93)),
+        url('images/bg-servicos.jpg') center / cover no-repeat;
+      background-attachment: fixed, fixed;
+    }
+    .servicos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .servico-card { background-color: var(--branco); border: 1px solid var(--cinza-2); border-radius: 12px; padding: 36px 28px; position: relative; overflow: hidden; transition: transform .25s, box-shadow .25s, border-color .25s; }
+    .servico-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(12,30,82,.12); border-color: rgba(40,170,220,.3); }
+    .servico-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--azul), var(--ciano)); }
+    .servico-icon { width: 56px; height: 56px; background: rgba(21,72,176,.08); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
+    .servico-icon i { font-size: 1.4rem; color: var(--azul); }
+    .servico-card h3 { font-family: var(--ff-titulo); font-size: 1rem; letter-spacing: .3px; color: var(--navy); margin-bottom: 10px; text-transform: uppercase; font-weight: 700; }
+    .servico-card p { font-size: .88rem; color: var(--texto-leve); line-height: 1.8; }
+    .servico-badge { display: inline-block; margin-top: 14px; background: rgba(21,72,176,.08); border: 1px solid rgba(21,72,176,.15); color: var(--azul); font-family: var(--ff-titulo); font-size: .62rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 4px 10px; border-radius: 100px; }
+
+    /* ── PLANOS ── */
+    #planos {
+      background:
+        linear-gradient(rgba(12,30,82,.90), rgba(12,30,82,.90)),
+        url('images/bg-planos.jpg') center / cover no-repeat;
+      background-attachment: fixed, fixed;
+      position: relative; overflow: hidden;
+    }
+    #planos::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(40,170,220,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(40,170,220,.05) 1px, transparent 1px); background-size: 56px 56px; pointer-events: none; }
+
+    .planos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; position: relative; z-index: 1; }
+    .plano-card { background: rgba(255,255,255,.05); border: 1px solid rgba(40,170,220,.2); border-radius: 14px; padding: 36px 28px; position: relative; overflow: hidden; transition: transform .25s, border-color .25s, background .25s; display: flex; flex-direction: column; }
+    .plano-card:hover { transform: translateY(-6px); border-color: rgba(40,170,220,.45); background: rgba(255,255,255,.08); }
+    .plano-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--azul), var(--ciano)); }
+    .plano-card.popular { border-color: rgba(40,170,220,.45); }
+    .plano-card.popular:hover { border-color: var(--ciano); }
+    .plano-card.popular::before { background: linear-gradient(90deg, var(--ciano), var(--ciano-2)); }
+
+    .plano-label { display: inline-block; font-family: var(--ff-titulo); font-size: .62rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 12px; border-radius: 100px; margin-bottom: 20px; width: fit-content; }
+    .plano-label-default { background: rgba(21,72,176,.2); border: 1px solid rgba(40,170,220,.3); color: var(--ciano-2); }
+    .plano-label-popular { background: rgba(40,170,220,.2); border: 1px solid rgba(40,170,220,.5); color: var(--ciano-2); }
+
+    .plano-card h3 { font-family: var(--ff-titulo); font-size: 1.2rem; letter-spacing: .5px; color: var(--branco); margin-bottom: 8px; text-transform: uppercase; font-weight: 700; }
+    .plano-card > p { font-size: .88rem; color: rgba(255,255,255,.55); margin-bottom: 24px; line-height: 1.7; }
+    .plano-features { display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; flex: 1; }
+    .plano-feature { display: flex; align-items: flex-start; gap: 10px; font-size: .875rem; color: rgba(255,255,255,.8); line-height: 1.5; }
+    .plano-feature i { color: var(--ciano); margin-top: 3px; font-size: .8rem; flex-shrink: 0; }
+    .plano-card.popular .plano-feature { color: rgba(255,255,255,.92); }
+
+    .btn-plano { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 13px 20px; border-radius: var(--radius); font-family: var(--ff-titulo); font-size: .82rem; font-weight: 700; letter-spacing: .5px; background: rgba(255,255,255,.1); color: var(--branco); border: 1.5px solid rgba(255,255,255,.25); transition: background .2s, border-color .2s, transform .15s; }
+    .btn-plano:hover { background: rgba(255,255,255,.18); border-color: rgba(255,255,255,.5); transform: translateY(-1px); color: var(--branco); }
+    .plano-card.popular .btn-plano { background: var(--ciano); color: var(--navy); border-color: var(--ciano); }
+    .plano-card.popular .btn-plano:hover { background: var(--ciano-2); border-color: var(--ciano-2); color: var(--navy); }
+
+    /* ── AVALIAÇÕES ── */
+    #avaliacoes { background: var(--branco); }
+    .avaliacoes-inner { max-width: 760px; margin: 0 auto; text-align: center; }
+    .google-card { background: var(--cinza-bg); border: 1px solid var(--cinza-2); border-radius: 16px; padding: 48px 40px; position: relative; overflow: hidden; }
+    .google-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #4285F4, #34A853, #FBBC04, #EA4335); }
+    .google-logo { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 20px; }
+    .google-logo i { font-size: 2rem; color: #4285F4; }
+    .google-logo span { font-family: var(--ff-titulo); font-size: 1.1rem; font-weight: 700; color: var(--texto); letter-spacing: .3px; }
+    .google-stars { display: flex; justify-content: center; gap: 6px; margin-bottom: 16px; }
+    .google-stars i { color: #FBBC04; font-size: 1.4rem; }
+    .google-card p { font-size: 1rem; color: var(--texto-leve); line-height: 1.8; margin-bottom: 32px; max-width: 540px; margin-left: auto; margin-right: auto; }
+    .google-card p strong { color: var(--texto); }
+    .btn-google { display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; background: #4285F4; color: var(--branco); font-family: var(--ff-titulo); font-size: .88rem; font-weight: 700; letter-spacing: .5px; border-radius: var(--radius); transition: background .2s, transform .15s, box-shadow .2s; }
+    .btn-google:hover { background: #3367D6; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(66,133,244,.35); color: var(--branco); }
+
+    /* ── CONTATO ── */
+    #contato {
+      background:
+        linear-gradient(rgba(235,242,252,.92), rgba(235,242,252,.92)),
+        url('images/bg-contato.jpg') center / cover no-repeat;
+      background-attachment: fixed, fixed;
+    }
+    .contato-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+    .contato-info { display: flex; flex-direction: column; gap: 20px; }
+    .contato-item { display: flex; gap: 16px; align-items: flex-start; }
+    .contato-ico { width: 48px; height: 48px; background: rgba(21,72,176,.08); border: 1px solid rgba(21,72,176,.15); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .contato-ico i { color: var(--azul); font-size: 1rem; }
+    .contato-item-txt label { display: block; font-family: var(--ff-titulo); font-size: .62rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--azul); margin-bottom: 4px; }
+    .contato-item-txt span, .contato-item-txt a { color: var(--texto-leve); font-size: .92rem; line-height: 1.6; }
+    .contato-item-txt a:hover { color: var(--azul); }
+
+    .contato-box { background: var(--branco); border: 1px solid var(--cinza-2); border-radius: 16px; padding: 40px 36px; position: relative; overflow: hidden; }
+    .contato-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--navy), var(--azul), var(--ciano)); }
+    .contato-box h3 { font-family: var(--ff-titulo); font-size: 1.5rem; letter-spacing: .5px; color: var(--navy); margin-bottom: 12px; text-transform: uppercase; font-weight: 800; }
+    .contato-box p { font-size: .9rem; color: var(--texto-leve); line-height: 1.75; margin-bottom: 28px; }
+    .contato-box-footer { margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--cinza-2); font-size: .82rem; color: var(--texto-leve); }
+    .contato-box-footer i { color: var(--azul); margin-right: 6px; }
+    .contato-mapa { margin-top: 48px; border-radius: 12px; overflow: hidden; box-shadow: var(--sombra); }
+
+    /* ── FOOTER ── */
+    #footer { background: var(--navy-dark); border-top: 1px solid rgba(40,170,220,.15); padding: 56px 0 0; }
+    .footer-inner { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; padding-bottom: 48px; }
+    .footer-brand img { height: 52px; margin-bottom: 16px; filter: brightness(0) invert(1); }
+    .footer-brand p { font-size: .85rem; color: rgba(255,255,255,.4); line-height: 1.75; max-width: 280px; }
+    .footer-brand p strong { color: var(--ciano); }
+    .footer-col h4 { font-family: var(--ff-titulo); font-size: .88rem; letter-spacing: 2px; color: var(--ciano); margin-bottom: 20px; text-transform: uppercase; }
+    .footer-col ul { display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul li a { color: rgba(255,255,255,.45); font-size: .85rem; transition: color .2s; }
+    .footer-col ul li a:hover { color: var(--ciano); }
+    .footer-col ul li i { width: 16px; margin-right: 6px; color: var(--ciano); font-size: .8rem; }
+    .footer-social { display: flex; gap: 12px; margin-top: 20px; }
+    .footer-social a { width: 38px; height: 38px; background: rgba(40,170,220,.1); border: 1px solid rgba(40,170,220,.25); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.5); font-size: .95rem; transition: background .2s, color .2s; }
+    .footer-social a:hover { background: var(--ciano); color: var(--navy); border-color: var(--ciano); }
+    .footer-bottom { border-top: 1px solid rgba(40,170,220,.1); padding: 20px 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .footer-bottom p { font-size: .78rem; color: rgba(255,255,255,.28); }
+    .footer-bottom span { color: var(--ciano); }
+
+    /* ── WPP FLOAT ── */
+    .wpp-float { position: fixed; bottom: 28px; right: 28px; width: 56px; height: 56px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--branco); font-size: 1.6rem; z-index: 900; box-shadow: 0 4px 16px rgba(37,211,102,.4); transition: background .2s, transform .2s; }
+    .wpp-float:hover { background: #1DAA56; transform: scale(1.08); }
+
+    .scroll-top { position: fixed; bottom: 28px; left: 28px; width: 44px; height: 44px; background: rgba(12,30,82,.1); border: 1px solid rgba(12,30,82,.25); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--azul); font-size: 1rem; opacity: 0; pointer-events: none; transition: opacity .3s, background .2s; z-index: 899; }
+    .scroll-top.visible { opacity: 1; pointer-events: auto; }
+    .scroll-top:hover { background: rgba(12,30,82,.2); }
+
+    .fade-up   { opacity: 0; transform: translateY(32px);  transition: opacity .65s ease, transform .65s ease; }
+    .fade-left { opacity: 0; transform: translateX(-32px); transition: opacity .65s ease, transform .65s ease; }
+    .fade-right{ opacity: 0; transform: translateX(32px);  transition: opacity .65s ease, transform .65s ease; }
+    .fade-up.visible, .fade-left.visible, .fade-right.visible { opacity: 1; transform: none; }
+
+    /* ── PARTÍCULAS HERO ── */
+    .hero-particle {
+      position: absolute; border-radius: 50%;
+      pointer-events: none; z-index: 1;
+      animation: particleFloat linear infinite;
+    }
+    @keyframes particleFloat {
+      0%   { transform: translateY(0) translateX(0);   opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: .7; }
+      100% { transform: translateY(-110px) translateX(15px); opacity: 0; }
+    }
+
+    /* ── ÍCONES TECH FLUTUANTES ── */
+    .hero-tech-icon {
+      position: absolute; pointer-events: none; z-index: 0;
+      color: rgba(40,170,220,.07);
+      animation: techFloat linear infinite;
+    }
+    @keyframes techFloat {
+      0%   { transform: translateY(0) rotate(0deg);   opacity: 0; }
+      15%  { opacity: 1; }
+      85%  { opacity: .6; }
+      100% { transform: translateY(-90px) rotate(180deg); opacity: 0; }
+    }
+
+    /* ── SCAN LINE HERO ── */
+    .hero-scan {
+      position: absolute; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(40,170,220,.5), transparent);
+      z-index: 2; pointer-events: none;
+      animation: heroScan 7s ease-in-out infinite;
+    }
+    @keyframes heroScan {
+      0%   { top: -2%; opacity: 0; }
+      5%   { opacity: 1; }
+      95%  { opacity: .7; }
+      100% { top: 102%; opacity: 0; }
+    }
+
+    /* ── GLITCH TÍTULO HERO ── */
+    @keyframes glitch {
+      0%, 88%, 100% { text-shadow: none; }
+      90% { text-shadow: -3px 0 rgba(40,170,220,.7), 3px 0 rgba(21,72,176,.5); }
+      92% { text-shadow:  3px 0 rgba(40,170,220,.7), -3px 0 rgba(21,72,176,.5); }
+      94% { text-shadow: none; }
+      96% { text-shadow: -2px 0 rgba(76,196,240,.6); }
+      98% { text-shadow: none; }
+    }
+    .hero-text h1 { animation: glitch 9s infinite; }
+
+    /* ── TYPING CURSOR ── */
+    .typing-cursor {
+      display: inline-block; width: 2px; height: .9em;
+      background: var(--ciano); margin-left: 2px;
+      vertical-align: text-bottom;
+      animation: blink .7s step-end infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    /* ── RIPPLE BOTÕES ── */
+    .ripple {
+      position: absolute; border-radius: 50%;
+      background: rgba(255,255,255,.3);
+      transform: scale(0);
+      animation: rippleAnim .6s linear;
+      pointer-events: none;
+    }
+    @keyframes rippleAnim { to { transform: scale(4); opacity: 0; } }
+
+    /* ── GLOW CARDS ── */
+    .servico-card:hover { box-shadow: 0 16px 48px rgba(12,30,82,.12), 0 0 22px rgba(40,170,220,.18); }
+    .plano-card.popular { box-shadow: 0 0 28px rgba(40,170,220,.15); }
+    .plano-card.popular:hover { box-shadow: 0 16px 48px rgba(12,30,82,.25), 0 0 32px rgba(40,170,220,.28); }
+
+    /* ── HERO CARD PULSE ── */
+    @keyframes cardPulse {
+      0%, 100% { box-shadow: 0 0 0 rgba(40,170,220,0); }
+      50%       { box-shadow: 0 0 32px rgba(40,170,220,.22); }
+    }
+    .hero-card { animation: cardPulse 4s ease-in-out infinite; }
+
+    /* ── WPP FLOAT PULSE ── */
+    @keyframes wppPulse {
+      0%, 100% { box-shadow: 0 4px 16px rgba(37,211,102,.4); }
+      50%       { box-shadow: 0 4px 28px rgba(37,211,102,.7); }
+    }
+    .wpp-float { animation: wppPulse 2.5s ease-in-out infinite; }
+
+    /* ── EYEBROW GLOW ENTRADA ── */
+    .section-eyebrow.eyebrow-lit { animation: eyebrowGlow .9s ease-out both; }
+    @keyframes eyebrowGlow {
+      0%,100% { color: var(--azul); text-shadow: none; }
+      40%     { color: var(--ciano); text-shadow: 0 0 14px rgba(40,170,220,.55); }
+    }
+    .section-eyebrow.light.eyebrow-lit { animation: eyebrowGlowLight .9s ease-out both; }
+    @keyframes eyebrowGlowLight {
+      0%,100% { color: rgba(255,255,255,.7); text-shadow: none; }
+      40%     { color: var(--ciano-2); text-shadow: 0 0 14px rgba(76,196,240,.55); }
+    }
+
+    /* ── LGPD ── */
+    #lgpd-banner { position: fixed; bottom: 0; left: 0; right: 0; z-index: 1500; background: var(--navy); border-top: 2px solid rgba(40,170,220,.4); padding: 20px 0; transform: translateY(100%); transition: transform .45s cubic-bezier(.22,1,.36,1); box-shadow: 0 -8px 32px rgba(0,0,0,.4); }
+    #lgpd-banner.show { transform: translateY(0); }
+    .lgpd-inner { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+    .lgpd-icon { color: var(--ciano); font-size: 1.4rem; flex-shrink: 0; }
+    .lgpd-text { flex: 1; min-width: 220px; }
+    .lgpd-text p { font-size: .82rem; color: rgba(255,255,255,.7); line-height: 1.6; margin: 0; }
+    .lgpd-text a { color: var(--ciano-2); text-decoration: underline; font-weight: 600; }
+    .lgpd-btns { display: flex; gap: 10px; flex-shrink: 0; }
+    .lgpd-aceitar { background: var(--ciano); color: var(--navy); border: none; padding: 10px 22px; border-radius: var(--radius); font-family: var(--ff-titulo); font-size: .82rem; font-weight: 700; cursor: pointer; transition: background .2s; }
+    .lgpd-aceitar:hover { background: var(--ciano-2); }
+    .lgpd-recusar { background: transparent; color: rgba(255,255,255,.5); border: 1px solid rgba(255,255,255,.2); padding: 10px 18px; border-radius: var(--radius); font-family: var(--ff-titulo); font-size: .82rem; font-weight: 600; cursor: pointer; transition: border-color .2s, color .2s; }
+    .lgpd-recusar:hover { border-color: rgba(255,255,255,.4); color: rgba(255,255,255,.75); }
+
+    /* ════════════════════════════════════
+       RESPONSIVIDADE
+    ════════════════════════════════════ */
+    /* ════════════════════════════════════════════
+       RESPONSIVIDADE COMPLETA
+    ════════════════════════════════════════════ */
+
+    /* ── Desktop largo (1280px+): ajusta gaps do nav ── */
+    @media (min-width: 1280px) and (max-width: 1440px) {
+      .nav-links { gap: 22px; }
+    }
+
+    /* ── Laptop médio (1025px–1279px): nav compacto, grids ajustados ── */
+    @media (min-width: 1025px) and (max-width: 1279px) {
+      .nav-links { gap: 16px; }
+      .nav-links a { font-size: .73rem; }
+      .hero-inner { gap: 52px; }
+      .servicos-grid { gap: 16px; }
+      .planos-grid { gap: 16px; }
+      .sobre-grid { gap: 48px; }
+    }
+
+    /* ── Desabilita parallax em touch (≤1023px) ── */
+    @media (max-width: 1023px) {
+      #sobre, #servicos, #planos, #contato {
+        background-attachment: scroll, scroll;
+      }
+    }
+
+    /* ── Tablet (≤1024px): hamburger, hero 1 col, grids 2 cols ── */
+    @media (max-width: 1024px) {
+      /* Nav */
+      .nav-links  { display: none; }
+      .hamburger  { display: flex; }
+      #navMenu    { display: block; }
+
+      /* Hero */
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+      .hero-text h2, .hero-slogan { max-width: 100%; text-align: center; margin-left: auto; margin-right: auto; }
+      .hero-slogan::before { display: none; }
+      .hero-btns  { justify-content: center; }
+      .hero-eyebrow { margin: 0 auto 24px; }
+      .hero-visual  { max-width: 460px; margin: 0 auto; }
+
+      /* Sobre */
+      .sobre-grid { grid-template-columns: 1fr; gap: 40px; }
+      .sobre-visual { max-width: 560px; margin: 0 auto; }
+      .section-eyebrow.left { padding: 0 20px; }
+      .section-eyebrow.left::before { display: block; }
+      .section-title.left  { text-align: center; }
+      .section-desc.left   { text-align: center; margin-left: auto; }
+      .cyan-line { margin: 0 auto 24px; }
+
+      /* Serviços: 2 colunas no tablet */
+      .servicos-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+
+      /* Planos: 2 colunas no tablet */
+      .planos-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+
+      /* Contato */
+      .contato-grid { grid-template-columns: 1fr; gap: 40px; }
+
+      /* Footer */
+      .footer-inner { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+
+    /* ── Tablet médio (≤900px): planos em 1 col ── */
+    @media (max-width: 900px) {
+      .planos-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+      .hero-visual  { max-width: 400px; }
+    }
+
+    /* ── Tablet pequeno / mobile largo (≤768px) ── */
+    @media (max-width: 768px) {
+      section { padding: 72px 0; }
+
+      /* Hero stats: empilha verticalmente */
+      .hero-stats { flex-direction: column; gap: 14px; border-top: none; padding-top: 24px; }
+      .hero-stat  { border-right: none; border-bottom: 1px solid rgba(255,255,255,.1); padding: 0 0 14px !important; text-align: center; }
+      .hero-stat:last-child { border-bottom: none; padding-bottom: 0 !important; }
+
+      /* Hero card */
+      .hero-card  { padding: 32px 24px; }
+
+      /* Sobre: stat boxes menores */
+      .stats-grid { padding: 22px 18px; }
+      .stat-box strong { font-size: 1.75rem; }
+
+      /* Google card */
+      .google-card { padding: 32px 24px; }
+      .google-stars i { font-size: 1.2rem; }
+
+      /* Contato */
+      .contato-box { padding: 32px 26px; }
+      .contato-mapa iframe { height: 320px !important; }
+
+      /* Footer: 1 coluna */
+      .footer-inner  { grid-template-columns: 1fr; gap: 28px; }
+      .footer-bottom { flex-direction: column; text-align: center; gap: 6px; }
+    }
+
+    /* ── Mobile (≤599px): tudo em 1 coluna ── */
+    @media (max-width: 599px) {
+      section { padding: 56px 0; }
+      .container { padding: 0 1.25rem; }
+
+      /* Header */
+      .logo-wrap img { height: 44px; }
+
+      /* Hero */
+      .hero-inner   { gap: 28px; }
+      .hero-text h1 { font-size: clamp(1.9rem, 8.5vw, 2.6rem); }
+      .hero-text h2 { font-size: .92rem; }
+      .hero-eyebrow { font-size: .65rem; letter-spacing: 1.8px; }
+      .hero-btns    { flex-direction: column; align-items: stretch; gap: 10px; }
+      .hero-btns .btn { width: 100%; justify-content: center; min-height: 48px; }
+      .hero-card    { padding: 24px 18px; }
+      .hero-logo-bg { padding: 14px 18px; }
+      .hero-logo-bg img { max-width: 175px; }
+      .hero-visual  { max-width: 100%; }
+      .hero-check span { font-size: .8rem; }
+
+      /* Sobre */
+      .stats-grid   { grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 18px 14px; }
+      .stat-box     { padding: 16px 8px; }
+      .stat-box strong { font-size: 1.6rem; }
+      .mvv-grid     { gap: 10px; }
+      .mvv-card     { padding: 18px 16px; }
+      .info-card    { padding: 18px 20px; }
+      .horario-card { padding: 20px 18px; }
+
+      /* Serviços: 1 coluna */
+      .servicos-grid { grid-template-columns: 1fr; gap: 14px; }
+      .servico-card  { padding: 28px 22px; }
+
+      /* Planos */
+      .planos-grid  { max-width: 100%; }
+      .plano-card   { padding: 28px 22px; }
+
+      /* Avaliações */
+      .google-card  { padding: 28px 20px; }
+      .btn-google   { padding: 12px 22px; font-size: .82rem; }
+
+      /* Contato */
+      .contato-box  { padding: 28px 20px; }
+      .contato-mapa iframe { height: 270px !important; }
+
+      /* LGPD */
+      .lgpd-btns { width: 100%; }
+      .lgpd-aceitar, .lgpd-recusar { flex: 1; min-height: 44px; }
+    }
+
+    /* ── Mobile pequeno (≤480px) ── */
+    @media (max-width: 480px) {
+      section { padding: 48px 0; }
+      .container { padding: 0 1rem; }
+
+      .logo-wrap img { height: 40px; }
+
+      /* Hero */
+      .hero-text h1 { font-size: clamp(1.65rem, 8vw, 2.1rem); letter-spacing: .5px; }
+      .hero-card    { padding: 20px 14px; }
+      .hero-check   { padding: 8px 10px; gap: 8px; }
+      .hero-stat strong { font-size: 1.6rem; }
+
+      /* Sobre */
+      .stats-grid   { padding: 14px 10px; gap: 8px; }
+      .stat-box     { padding: 14px 6px; }
+      .stat-box strong { font-size: 1.45rem; }
+
+      /* Serviços */
+      .servico-card  { padding: 24px 18px; }
+      .servico-icon  { width: 48px; height: 48px; margin-bottom: 14px; }
+      .servico-icon i { font-size: 1.25rem; }
+      .servico-card h3 { font-size: .9rem; }
+      .servico-card p  { font-size: .84rem; }
+
+      /* Planos */
+      .plano-card    { padding: 24px 18px; }
+      .plano-card h3 { font-size: 1.05rem; }
+      .plano-feature { font-size: .84rem; }
+
+      /* Contato */
+      .contato-ico   { width: 42px; height: 42px; }
+      .contato-item-txt span,
+      .contato-item-txt a { font-size: .88rem; }
+      .contato-box   { padding: 22px 16px; }
+      .contato-box h3 { font-size: 1.25rem; }
+      .contato-mapa iframe { height: 240px !important; }
+
+      /* Footer */
+      .footer-brand img { height: 38px; }
+      .wpp-float  { bottom: 18px; right: 18px; width: 50px; height: 50px; font-size: 1.4rem; }
+      .scroll-top { bottom: 18px; left: 18px; }
+    }
+
+    /* ── Mobile muito pequeno (≤360px) ── */
+    @media (max-width: 360px) {
+      .container { padding: 0 .85rem; }
+      .logo-wrap img { height: 36px; }
+      .hero-text h1  { font-size: clamp(1.45rem, 7.5vw, 1.8rem); }
+      .hero-text h2  { font-size: .85rem; }
+      .section-title { font-size: 1.45rem; }
+      .section-desc  { font-size: .9rem; }
+      .hero-btns .btn, .btn-plano { font-size: .78rem; padding: .72rem 1rem; }
+      .nav-cta       { padding: 7px 12px; font-size: .7rem !important; }
+      .servico-card p { font-size: .8rem; }
+      .plano-feature  { font-size: .8rem; }
+      .contato-item-txt label { letter-spacing: 1.2px; }
+      .footer-col ul li a { font-size: .8rem; }
+    }
+
+    /* ── Safe area (notch iOS) ── */
+    @supports (padding-top: env(safe-area-inset-top)) {
+      #header  { padding-top: env(safe-area-inset-top); height: calc(var(--header-h) + env(safe-area-inset-top)); }
+      .header-inner { height: var(--header-h); }
+      #navMenu { top: calc(var(--header-h) + env(safe-area-inset-top)); }
+      #hero    { padding-top: calc(var(--header-h) + env(safe-area-inset-top)); }
+    }
+
+    /* ── Redução de movimento ── */
+    @media (prefers-reduced-motion: reduce) {
+      .fade-up, .fade-left, .fade-right { opacity: 1; transform: none; transition: none; }
+      .marquee-track { animation: none; }
+      .hero-particle, .hero-tech-icon, .hero-scan,
+      .hero-text h1, .hero-card, .wpp-float { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- ══ HEADER ══ -->
+  <header id="header" role="banner">
+    <div class="container header-inner">
+      <a href="#hero" class="logo-wrap" aria-label="Atommotec — página inicial">
+        <img src="images/logo.png" alt="Atommotec — Atommo Tecnologia">
+      </a>
+      <nav role="navigation" aria-label="Menu principal">
+        <ul class="nav-links">
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#planos">Planos</a></li>
+          <li><a href="#avaliacoes">Avaliações</a></li>
+          <li><a href="#contato">Contato</a></li>
+          <li><a href="vitrine.html" class="nav-vitrine"><i class="fa-solid fa-store"></i> Vitrine</a></li>
+          <li>
+            <a href="https://wa.me/553135343329" target="_blank" rel="noopener noreferrer" class="nav-cta">
+              <i class="fa-brands fa-whatsapp"></i> WhatsApp
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menu" aria-expanded="false" aria-controls="navMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- NAV MOBILE -->
+  <nav id="navMenu" aria-label="Menu mobile" aria-hidden="true">
+    <ul>
+      <li><a href="#sobre">Sobre nós</a></li>
+      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#planos">Planos</a></li>
+      <li><a href="#avaliacoes">Avaliações</a></li>
+      <li><a href="#contato">Contato</a></li>
+      <li><a href="vitrine.html" style="color:var(--ciano-2)"><i class="fa-solid fa-store"></i>&nbsp; Vitrine online</a></li>
+      <li>
+        <a href="https://wa.me/553135343329" target="_blank" rel="noopener noreferrer" style="color:var(--ciano)">
+          <i class="fa-brands fa-whatsapp"></i>&nbsp; Falar pelo WhatsApp
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- ══ HERO ══ -->
+  <section id="hero" aria-label="Apresentação">
+    <div class="container hero-inner">
+
+      <div class="hero-text">
+        <div class="hero-eyebrow">
+          <i class="fa-solid fa-microchip"></i>
+          Soluções em tecnologia
+        </div>
+        <h1><span>Atommo</span>tec</h1>
+        <h2>Suporte técnico, infraestrutura de redes e venda de hardware para pessoas e empresas em Igarapé, São Joaquim de Bicas e região. Tecnologia funcionando a seu favor, sem dor de cabeça.</h2>
+        <p class="hero-slogan">"Atendimento de loja de bairro com competência de empresa grande."</p>
+        <div class="hero-btns">
+          <a href="https://wa.me/553135343329" target="_blank" rel="noopener noreferrer" class="btn btn-ciano">
+            <i class="fa-brands fa-whatsapp"></i> Falar no WhatsApp
+          </a>
+          <a href="#servicos" class="btn btn-outline-branco">
+            Ver serviços <i class="fa-solid fa-arrow-right"></i>
+          </a>
+          <a href="vitrine.html" class="btn-vitrine-hero">
+            <i class="fa-solid fa-store"></i> Ver vitrine
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <strong><i class="fa-solid fa-star" style="font-size:1.7rem"></i></strong>
+            <span>Avaliação Google</span>
+          </div>
+          <div class="hero-stat">
+            <strong><i class="fa-solid fa-headset" style="font-size:1.7rem"></i></strong>
+            <span>Suporte ágil</span>
+          </div>
+          <div class="hero-stat">
+            <strong class="counter" data-target="100" data-suffix="%">0%</strong>
+            <span>Qualidade técnica</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-card fade-right">
+          <div class="hero-logo-bg">
+            <img src="images/logo.png" alt="Atommotec">
+          </div>
+          <div class="hero-checklist">
+            <div class="hero-check">
+              <i class="fa-solid fa-circle-check"></i>
+              <span>Manutenção de computadores e notebooks</span>
+            </div>
+            <div class="hero-check">
+              <i class="fa-solid fa-circle-check"></i>
+              <span>Redes, servidores e infraestrutura</span>
+            </div>
+            <div class="hero-check">
+              <i class="fa-solid fa-circle-check"></i>
+              <span>Venda de hardware e software</span>
+            </div>
+            <div class="hero-check">
+              <i class="fa-solid fa-circle-check"></i>
+              <span>Planos mensais para empresas</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-strip" aria-hidden="true">
+    <div class="marquee-track">
+      <span class="marquee-item">Manutenção de computadores <span class="marquee-sep">✦</span></span>
+      <span class="marquee-item">Manutenção de notebooks <span class="marquee-sep">✦</span></span>
+      <span class="marquee-item">Redes e servidores <span class="marquee-sep">✦</span></span>
+      <span class="marquee-item">Venda de hardware <span class="marquee-sep">✦</span></span>
+      <span class="marquee-item">Manutenção remota <span class="marquee-sep">✦</span></span>
+      <span class="marquee-item">Planos para empresas <span class="marquee-sep">✦</span></span>
+      <span class="marquee-item">Igarapé — MG <span class="marquee-sep">✦</span></span>
+      <span class="marquee-item">Manutenção de computadores <span class="marquee-sep">✦</span></span>
+      <span class="marquee-item">Manutenção de notebooks <span class="marquee-sep">✦</span></span>
+      <span class="marquee-item">Redes e servidores <span class="marquee-sep">✦</span></span>
+      <span class="marquee-item">Venda de hardware <span class="marquee-sep">✦</span></span>
+      <span class="marquee-item">Manutenção remota <span class="marquee-sep">✦</span></span>
+      <span class="marquee-item">Planos para empresas <span class="marquee-sep">✦</span></span>
+      <span class="marquee-item">Igarapé — MG <span class="marquee-sep">✦</span></span>
+    </div>
+  </div>
+
+  <!-- ══ SOBRE ══ -->
+  <section id="sobre" aria-labelledby="sobre-titulo">
+    <div class="container">
+      <div class="sobre-grid">
+
+        <div class="sobre-text fade-left">
+          <span class="section-eyebrow left">Quem somos</span>
+          <h2 class="section-title left" id="sobre-titulo">Nossa história</h2>
+          <div class="cyan-line"></div>
+          <p>A <strong>Atommo Tecnologia</strong> não nasceu de um plano corporativo frio, mas de um desejo genuíno de mudança. Fundada por dois jovens entusiastas, a empresa é o resultado direto da coragem de empreender — cansados de modelos engessados que limitavam a inovação.</p>
+          <p>Deixamos a segurança do emprego convencional para apostar no que realmente amamos: <strong>conectar pessoas e empresas à tecnologia de forma eficiente e humana</strong>. O que começou como um salto de fé no mercado de Igarapé e São Joaquim de Bicas, hoje se consolida como uma estrutura sólida de suporte, infraestrutura e varejo.</p>
+          <p>Na Atommo, cada computador que consertamos e cada rede que estruturamos carrega o DNA dos nossos fundadores: a <strong>busca incansável pela excelência</strong> e o prazer de ver a tecnologia funcionando como deve. Não somos apenas uma assistência técnica — somos o resultado de quem escolheu fazer o que ama, do jeito certo.</p>
+
+          <div class="mvv-grid">
+            <div class="mvv-card">
+              <h3><i class="fa-solid fa-bullseye" style="margin-right:7px"></i>Missão</h3>
+              <p>Oferecer soluções completas em tecnologia — da manutenção de equipamentos à estruturação de redes — com atendimento ágil, transparente e de alta qualidade técnica.</p>
+            </div>
+            <div class="mvv-card">
+              <h3><i class="fa-solid fa-eye" style="margin-right:7px"></i>Visão</h3>
+              <p>Ser a referência regional em serviços de TI e infraestrutura, reconhecida pela agilidade e proximidade, expandindo para o ambiente digital com sistemas próprios.</p>
+            </div>
+            <div class="mvv-card">
+              <h3><i class="fa-solid fa-gem" style="margin-right:7px"></i>Valores</h3>
+              <p>Compromisso com o prazo, transparência radical no diagnóstico, excelência técnica, inovação aplicada e proximidade que faz diferença com cada cliente.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="sobre-visual fade-right">
+          <div class="stats-grid">
+            <div class="stat-box">
+              <strong class="counter" data-target="100" data-suffix="%">0%</strong>
+              <span>Transparência</span>
+            </div>
+            <div class="stat-box">
+              <strong><i class="fa-solid fa-star" style="font-size:1.7rem;color:var(--azul)"></i></strong>
+              <span>Excelência</span>
+            </div>
+            <div class="stat-box">
+              <strong><i class="fa-solid fa-headset" style="font-size:1.7rem;color:var(--azul)"></i></strong>
+              <span>Suporte ágil</span>
+            </div>
+            <div class="stat-box">
+              <strong><i class="fa-solid fa-handshake" style="font-size:1.7rem;color:var(--azul)"></i></strong>
+              <span>Confiança</span>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-row">
+              <div class="info-ico"><i class="fa-solid fa-building"></i></div>
+              <div class="info-txt">
+                <label>CNPJ</label>
+                <span>16.458.132/0001-00</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="horario-card">
+            <h4><i class="fa-solid fa-clock"></i> Horário de atendimento</h4>
+            <p>
+              Segunda a sexta: <strong>08h00 – 18h00</strong><br>
+              Sábado: <strong>08h00 – 12h00</strong>
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SERVIÇOS ══ -->
+  <section id="servicos" aria-labelledby="servicos-titulo">
+    <div class="container">
+      <div style="text-align:center; margin-bottom:56px" class="fade-up">
+        <span class="section-eyebrow">O que fazemos</span>
+        <h2 class="section-title" id="servicos-titulo">Nossos <span>serviços</span></h2>
+        <p class="section-desc">Soluções completas em tecnologia para uso pessoal e corporativo, com atendimento presencial e remoto.</p>
+      </div>
+      <div class="servicos-grid">
+
+        <div class="servico-card has-bg srv-computadores fade-up">
+          <div class="servico-icon"><i class="fa-solid fa-computer"></i></div>
+          <h3>Manutenção de computadores</h3>
+          <p>Diagnóstico, reparo e upgrade de desktops. Troca de componentes, limpeza interna, reinstalação de sistema e otimização de desempenho.</p>
+          <span class="servico-badge">Presencial e remoto</span>
+        </div>
+
+        <div class="servico-card has-bg srv-notebooks fade-up" style="transition-delay:.08s">
+          <div class="servico-icon"><i class="fa-solid fa-laptop"></i></div>
+          <h3>Manutenção de notebooks</h3>
+          <p>Reparo de notebooks de todas as marcas: troca de tela, teclado, bateria, cooler, pasta térmica, conector de carga e placa-mãe.</p>
+          <span class="servico-badge">Todas as marcas</span>
+        </div>
+
+        <div class="servico-card has-bg srv-redes fade-up" style="transition-delay:.16s">
+          <div class="servico-icon"><i class="fa-solid fa-network-wired"></i></div>
+          <h3>Redes e infraestrutura</h3>
+          <p>Projeto, instalação e manutenção de redes cabeadas e Wi-Fi, configuração de roteadores, switches, servidores e VPN corporativa.</p>
+          <span class="servico-badge">Residencial e empresarial</span>
+        </div>
+
+        <div class="servico-card has-bg srv-hardware fade-up" style="transition-delay:.08s">
+          <div class="servico-icon"><i class="fa-solid fa-microchip"></i></div>
+          <h3>Venda de hardware e periféricos</h3>
+          <p>Venda de computadores, notebooks, peças, memórias, SSDs, impressoras e periféricos. Montamos o PC ideal para o seu perfil de uso.</p>
+          <span class="servico-badge">Hardware e acessórios</span>
+        </div>
+
+        <div class="servico-card has-bg srv-remoto fade-up" style="transition-delay:.16s">
+          <div class="servico-icon"><i class="fa-solid fa-wifi"></i></div>
+          <h3>Manutenção remota</h3>
+          <p>Atendimento via acesso remoto para resolver problemas de software, vírus, configurações e suporte sem que você precise sair de casa ou do escritório.</p>
+          <span class="servico-badge">Atendimento imediato</span>
+        </div>
+
+        <div class="servico-card has-bg srv-software fade-up" style="transition-delay:.24s">
+          <div class="servico-icon"><i class="fa-solid fa-compact-disc"></i></div>
+          <h3>Formatação e instalação de software</h3>
+          <p>Formatação completa, reinstalação de Windows e drivers, instalação de pacotes Office, antivírus, softwares de gestão e aplicativos profissionais.</p>
+          <span class="servico-badge">Windows e softwares</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ VITRINE ONLINE ══ -->
+  <section id="vitrine" aria-labelledby="vitrine-titulo">
+    <div class="container">
+      <div class="vitrine-content fade-up">
+        <span class="section-eyebrow light"><i class="fa-solid fa-store"></i> Compre online</span>
+        <h2 class="section-title light" id="vitrine-titulo">Nossa <span>vitrine digital</span></h2>
+        <p class="vitrine-desc">Explore nosso catálogo completo de produtos, confira preços e faça seu pedido diretamente pela vitrine online. Hardware, periféricos e soluções de TI a poucos cliques.</p>
+        <div class="vitrine-features">
+          <div class="vitrine-feat"><i class="fa-solid fa-microchip"></i> Catálogo completo</div>
+          <div class="vitrine-feat"><i class="fa-solid fa-truck"></i> Entrega rápida</div>
+          <div class="vitrine-feat"><i class="fa-solid fa-lock"></i> Compra segura</div>
+        </div>
+        <a href="vitrine.html" class="btn-vitrine-grande">
+          <i class="fa-solid fa-store"></i>
+          Acessar vitrine
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PLANOS ══ -->
+  <section id="planos" aria-labelledby="planos-titulo">
+    <div class="container">
+      <div style="text-align:center; margin-bottom:56px" class="fade-up">
+        <span class="section-eyebrow light">Planos mensais</span>
+        <h2 class="section-title light" id="planos-titulo">Suporte <span>para empresas</span></h2>
+        <p class="section-desc light">Planos de suporte mensal para manter sua empresa sempre com a tecnologia funcionando. Orçamento personalizado sem compromisso.</p>
+      </div>
+      <div class="planos-grid">
+
+        <div class="plano-card fade-up">
+          <div class="plano-label plano-label-default">Starter</div>
+          <h3>Plano básico</h3>
+          <p>Para pequenos escritórios e negócios com até 3 equipamentos.</p>
+          <div class="plano-features">
+            <div class="plano-feature"><i class="fa-solid fa-check"></i> Suporte remoto prioritário</div>
+            <div class="plano-feature"><i class="fa-solid fa-check"></i> 1 visita presencial por mês</div>
+            <div class="plano-feature"><i class="fa-solid fa-check"></i> Manutenção preventiva</div>
+            <div class="plano-feature"><i class="fa-solid fa-check"></i> Atendimento via WhatsApp</div>
+            <div class="plano-feature"><i class="fa-solid fa-check"></i> Até 3 equipamentos cobertos</div>
+          </div>
+          <a href="https://wa.me/553135343329" target="_blank" rel="noopener noreferrer" class="btn-plano">
+            <i class="fa-brands fa-whatsapp"></i> Solicitar proposta
+          </a>
+        </div>
+
+        <div class="plano-card popular fade-up" style="transition-delay:.1s">
+          <div class="plano-label plano-label-popular">Mais procurado</div>
+          <h3>Plano profissional</h3>
+          <p>Para empresas de médio porte com até 10 equipamentos e rede local.</p>
+          <div class="plano-features">
+            <div class="plano-feature"><i class="fa-solid fa-check"></i> Suporte remoto ilimitado</div>
+            <div class="plano-feature"><i class="fa-solid fa-check"></i> 2 visitas presenciais por mês</div>
+            <div class="plano-feature"><i class="fa-solid fa-check"></i> Atendimento presencial em até 4h</div>
+            <div class="plano-feature"><i class="fa-solid fa-check"></i> Manutenção e monitoramento de rede</div>
+            <div class="plano-feature"><i class="fa-solid fa-check"></i> Até 10 equipamentos cobertos</div>
+          </div>
+          <a href="https://wa.me/553135343329" target="_blank" rel="noopener noreferrer" class="btn-plano">
+            <i class="fa-brands fa-whatsapp"></i> Solicitar proposta
+          </a>
+        </div>
+
+        <div class="plano-card fade-up" style="transition-delay:.2s">
+          <div class="plano-label plano-label-default">Empresarial</div>
+          <h3>Plano enterprise</h3>
+          <p>Para empresas que precisam de suporte completo e infraestrutura gerenciada.</p>
+          <div class="plano-features">
+            <div class="plano-feature"><i class="fa-solid fa-check"></i> Suporte remoto ilimitado 24/5</div>
+            <div class="plano-feature"><i class="fa-solid fa-check"></i> Visitas presenciais quinzenais</div>
+            <div class="plano-feature"><i class="fa-solid fa-check"></i> Atendimento presencial em até 2h</div>
+            <div class="plano-feature"><i class="fa-solid fa-check"></i> Equipamentos ilimitados</div>
+            <div class="plano-feature"><i class="fa-solid fa-check"></i> Monitoramento de rede e servidor</div>
+          </div>
+          <a href="https://wa.me/553135343329" target="_blank" rel="noopener noreferrer" class="btn-plano">
+            <i class="fa-brands fa-whatsapp"></i> Solicitar proposta
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ AVALIAÇÕES ══ -->
+  <section id="avaliacoes" aria-labelledby="avaliacoes-titulo">
+    <div class="container">
+      <div style="text-align:center; margin-bottom:48px" class="fade-up">
+        <span class="section-eyebrow">O que dizem nossos clientes</span>
+        <h2 class="section-title" id="avaliacoes-titulo">Avaliações dos <span>clientes</span></h2>
+      </div>
+      <div class="avaliacoes-inner fade-up">
+        <div class="google-card">
+          <div class="google-logo">
+            <i class="fa-brands fa-google"></i>
+            <span>Google Avaliações</span>
+          </div>
+          <div class="google-stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p>Nossos clientes avaliam a Atommotec no Google com notas máximas. Confira os depoimentos reais de quem já experimentou nosso atendimento e qualidade técnica.</p>
+          <a href="https://www.google.com/search?q=atommo+tecnologia+igarape" target="_blank" rel="noopener noreferrer" class="btn-google">
+            <i class="fa-brands fa-google"></i> Ver avaliações no Google
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CONTATO ══ -->
+  <section id="contato" aria-labelledby="contato-titulo">
+    <div class="container">
+      <div style="text-align:center; margin-bottom:56px" class="fade-up">
+        <span class="section-eyebrow">Fale conosco</span>
+        <h2 class="section-title" id="contato-titulo">Entre em <span>contato</span></h2>
+        <p class="section-desc">Atendemos presencialmente, por telefone, WhatsApp e e-mail. Estamos prontos para resolver!</p>
+      </div>
+
+      <div class="contato-grid">
+
+        <div class="contato-info fade-left">
+          <div class="contato-item">
+            <div class="contato-ico"><i class="fa-solid fa-location-dot"></i></div>
+            <div class="contato-item-txt">
+              <label>Endereço</label>
+              <span>Av. Governador Valadares, 560 — Centro<br>Igarapé — MG</span>
+            </div>
+          </div>
+          <div class="contato-item">
+            <div class="contato-ico"><i class="fa-brands fa-whatsapp"></i></div>
+            <div class="contato-item-txt">
+              <label>WhatsApp</label>
+              <a href="https://wa.me/553135343329">(31) 3534-3329</a>
+            </div>
+          </div>
+          <div class="contato-item">
+            <div class="contato-ico"><i class="fa-solid fa-phone"></i></div>
+            <div class="contato-item-txt">
+              <label>Telefones</label>
+              <a href="tel:+553135343329">(31) 3534-3329</a><br>
+              <a href="tel:+553130582099">(31) 3058-2099</a>
+            </div>
+          </div>
+          <div class="contato-item">
+            <div class="contato-ico"><i class="fa-solid fa-envelope"></i></div>
+            <div class="contato-item-txt">
+              <label>E-mail</label>
+              <a href="mailto:comercial@atommo.com.br">comercial@atommo.com.br</a>
+            </div>
+          </div>
+          <div class="contato-item">
+            <div class="contato-ico"><i class="fa-solid fa-clock"></i></div>
+            <div class="contato-item-txt">
+              <label>Horário</label>
+              <span>Seg – Sex: 08h00 às 18h00<br>Sáb: 08h00 às 12h00</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="contato-box fade-right">
+          <h3>Solicite atendimento</h3>
+          <p>Entre em contato pelo WhatsApp ou telefone e nossa equipe especializada encontrará a solução ideal para você ou sua empresa.</p>
+          <a href="https://wa.me/553135343329" target="_blank" rel="noopener noreferrer" class="btn btn-azul" style="width:100%; justify-content:center; min-height:52px; font-size:.95rem; margin-bottom:12px;">
+            <i class="fa-brands fa-whatsapp"></i> Falar no WhatsApp
+          </a>
+          <a href="mailto:comercial@atommo.com.br" class="btn btn-outline-navy" style="width:100%; justify-content:center; min-height:48px; font-size:.88rem; background:transparent; color:var(--azul); border:2px solid rgba(21,72,176,.35);">
+            <i class="fa-solid fa-envelope"></i> Enviar e-mail
+          </a>
+          <div class="contato-box-footer">
+            <i class="fa-solid fa-clock"></i> Respondemos com agilidade durante o horário comercial.
+          </div>
+        </div>
+
+      </div>
+
+      <div class="contato-mapa fade-up">
+        <iframe
+          src="https://maps.google.com/maps?q=Av.+Governador+Valadares,+560,+Centro,+Igarap%C3%A9,+MG,+32900-000&output=embed&hl=pt"
+          width="100%" height="400" style="border:0; display:block;"
+          allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          title="Localização Atommotec — Igarapé MG">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer id="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+
+        <div class="footer-brand">
+          <img src="images/logo.png" alt="Atommotec">
+          <p>Soluções completas em tecnologia para pessoas e empresas. <strong>Atendimento ágil e qualidade técnica</strong> em Igarapé — MG.</p>
+          <p style="margin-top:10px; color:rgba(255,255,255,.22); font-size:.76rem;">CNPJ: 16.458.132/0001-00</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/atommotec/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://www.facebook.com/atommotec/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="https://wa.me/553135343329" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+              <i class="fa-brands fa-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navegação</h4>
+          <ul>
+            <li><a href="#sobre">Sobre nós</a></li>
+            <li><a href="#servicos">Serviços</a></li>
+            <li><a href="#planos">Planos mensais</a></li>
+            <li><a href="#avaliacoes">Avaliações</a></li>
+            <li><a href="#contato">Contato</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contato</h4>
+          <ul>
+            <li>
+              <a href="https://wa.me/553135343329" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-whatsapp"></i>(31) 3534-3329
+              </a>
+            </li>
+            <li>
+              <a href="tel:+553130582099">
+                <i class="fa-solid fa-phone"></i>(31) 3058-2099
+              </a>
+            </li>
+            <li>
+              <a href="mailto:comercial@atommo.com.br">
+                <i class="fa-solid fa-envelope"></i>comercial@atommo.com.br
+              </a>
+            </li>
+            <li>
+              <span><i class="fa-solid fa-location-dot"></i>Igarapé — MG</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 <span>Atommotec — Atommo Tecnologia</span>. Todos os direitos reservados.</p>
+        <p>CNPJ: <span>16.458.132/0001-00</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WPP FLOAT -->
+  <a href="https://wa.me/553135343329" class="wpp-float" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Atommotec">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <!-- SCROLL TOP -->
+  <button class="scroll-top" id="scrollTop" aria-label="Voltar ao topo">
+    <i class="fa-solid fa-chevron-up"></i>
+  </button>
+
+  <!-- LGPD -->
+  <div id="lgpd-banner" role="dialog" aria-live="polite" aria-label="Aviso de cookies e privacidade">
+    <div class="container lgpd-inner">
+      <i class="fa-solid fa-shield-halved lgpd-icon" aria-hidden="true"></i>
+      <div class="lgpd-text">
+        <p>
+          Utilizamos cookies para melhorar sua experiência de navegação, em conformidade com a
+          <strong style="color:rgba(255,255,255,.85)">LGPD (Lei nº 13.709/2018)</strong>.
+          Ao continuar navegando, você concorda com nossa
+          <a href="#" onclick="return false;">Política de Privacidade</a>.
+        </p>
+      </div>
+      <div class="lgpd-btns">
+        <button class="lgpd-aceitar" id="lgpdAceitar">Aceitar cookies</button>
+        <button class="lgpd-recusar" id="lgpdRecusar">Recusar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rodapé MonteSite - Atualização Automática -->
+  <div id="montesite-footer-badge"></div>
+  <script src="https://vaabpicspdbolvutnscp.supabase.co/functions/v1/get-footer-iframe"></script>
+
+  <script>
+    /* ── PROGRESSO ── */
+    var scrollProgress = document.getElementById('scrollProgress');
+    window.addEventListener('scroll', function() {
+      var t = window.pageYOffset, d = document.documentElement.scrollHeight - window.innerHeight;
+      scrollProgress.style.width = ((t / d) * 100) + '%';
+    }, { passive: true });
+
+    /* ── HEADER ── */
+    var header = document.getElementById('header');
+    window.addEventListener('scroll', function() {
+      header.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    /* ── MENU MOBILE ── */
+    var hamburger = document.getElementById('hamburgerBtn');
+    var navMenu   = document.getElementById('navMenu');
+    hamburger.addEventListener('click', function() {
+      var isOpen = navMenu.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+      navMenu.setAttribute('aria-hidden', !isOpen);
+    });
+    document.querySelectorAll('#navMenu a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        navMenu.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        navMenu.setAttribute('aria-hidden', 'true');
+      });
+    });
+
+    /* ── SCROLL REVEAL ── */
+    var fadeEls = document.querySelectorAll('.fade-up, .fade-left, .fade-right');
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    fadeEls.forEach(function(el) { observer.observe(el); });
+
+    /* ── SCROLL TOP ── */
+    var scrollTopBtn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', function() {
+      scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    scrollTopBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    /* ── SMOOTH SCROLL ── */
+    document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        var t = document.querySelector(this.getAttribute('href'));
+        if (!t) return;
+        e.preventDefault();
+        window.scrollTo({ top: t.getBoundingClientRect().top + window.pageYOffset - 72, behavior: 'smooth' });
+      });
+    });
+
+    /* ── SCROLLSPY ── */
+    var sections = document.querySelectorAll('section[id]');
+    var navLinks = document.querySelectorAll('.nav-links a');
+    function updateNav() {
+      var y = window.pageYOffset;
+      sections.forEach(function(s) {
+        var top = s.offsetTop - 100, bot = top + s.offsetHeight, id = s.getAttribute('id');
+        if (y >= top && y < bot) {
+          navLinks.forEach(function(l) { l.classList.remove('nav-active'); });
+          navLinks.forEach(function(l) { if (l.getAttribute('href') === '#' + id) l.classList.add('nav-active'); });
+        }
+      });
+    }
+    window.addEventListener('scroll', updateNav, { passive: true });
+
+    /* ── PARTÍCULAS HERO ── */
+    (function() {
+      var hero = document.getElementById('hero');
+      var colors = ['rgba(40,170,220,.35)','rgba(76,196,240,.28)','rgba(21,72,176,.22)','rgba(255,255,255,.12)'];
+      for (var i = 0; i < 22; i++) {
+        var p = document.createElement('div');
+        var sz = Math.random() * 5 + 2;
+        p.className = 'hero-particle';
+        p.style.cssText = 'left:'+Math.random()*100+'%;top:'+Math.random()*100+'%;width:'+sz+'px;height:'+sz+'px;background:'+colors[Math.floor(Math.random()*colors.length)]+';animation-delay:'+(Math.random()*9).toFixed(2)+'s;animation-duration:'+(Math.random()*8+6).toFixed(2)+'s';
+        hero.appendChild(p);
+      }
+    })();
+
+    /* ── ÍCONES TECH FLUTUANTES ── */
+    (function() {
+      var hero = document.getElementById('hero');
+      var icons = ['fa-microchip','fa-wifi','fa-network-wired','fa-laptop','fa-server','fa-database','fa-hard-drive','fa-computer'];
+      for (var i = 0; i < 10; i++) {
+        var el = document.createElement('i');
+        el.className = 'fas ' + icons[Math.floor(Math.random()*icons.length)] + ' hero-tech-icon';
+        var sz = Math.random()*18 + 10;
+        el.style.cssText = 'left:'+Math.random()*100+'%;top:'+Math.random()*100+'%;font-size:'+sz+'px;animation-delay:'+(Math.random()*10).toFixed(2)+'s;animation-duration:'+(Math.random()*14+10).toFixed(2)+'s';
+        hero.appendChild(el);
+      }
+    })();
+
+    /* ── SCAN LINE HERO ── */
+    (function() {
+      var scan = document.createElement('div');
+      scan.className = 'hero-scan';
+      document.getElementById('hero').appendChild(scan);
+    })();
+
+    /* ── TYPING EFFECT NO SLOGAN ── */
+    (function() {
+      var slogan = document.querySelector('.hero-slogan');
+      if (!slogan) return;
+      var fullText = slogan.textContent.trim();
+      slogan.textContent = '';
+      var textNode = document.createTextNode('');
+      var cursor = document.createElement('span');
+      cursor.className = 'typing-cursor';
+      slogan.appendChild(textNode);
+      slogan.appendChild(cursor);
+      var i = 0;
+      setTimeout(function() {
+        var timer = setInterval(function() {
+          if (i < fullText.length) { textNode.textContent += fullText[i++]; }
+          else {
+            clearInterval(timer);
+            setTimeout(function() { cursor.style.display = 'none'; }, 3500);
+          }
+        }, 38);
+      }, 900);
+    })();
+
+    /* ── RIPPLE NOS BOTÕES ── */
+    (function() {
+      document.querySelectorAll('.btn, .btn-plano, .btn-google').forEach(function(btn) {
+        btn.style.overflow = 'hidden';
+        btn.addEventListener('click', function(e) {
+          var r = btn.getBoundingClientRect();
+          var sz = Math.max(r.width, r.height);
+          var rpl = document.createElement('span');
+          rpl.className = 'ripple';
+          rpl.style.cssText = 'width:'+sz+'px;height:'+sz+'px;left:'+(e.clientX-r.left-sz/2)+'px;top:'+(e.clientY-r.top-sz/2)+'px';
+          btn.appendChild(rpl);
+          setTimeout(function() { rpl.remove(); }, 650);
+        });
+      });
+    })();
+
+    /* ── CONTADOR ANIMADO ── */
+    (function() {
+      var counters = document.querySelectorAll('.counter');
+      if (!counters.length) return;
+      var co = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (!entry.isIntersecting) return;
+          var el = entry.target;
+          var target = parseInt(el.dataset.target, 10);
+          var suffix = el.dataset.suffix || '';
+          var cur = 0, step = Math.ceil(target / 50);
+          var tick = setInterval(function() {
+            cur = Math.min(cur + step, target);
+            el.textContent = cur + suffix;
+            if (cur >= target) clearInterval(tick);
+          }, 25);
+          co.unobserve(el);
+        });
+      }, { threshold: 0.6 });
+      counters.forEach(function(c) { co.observe(c); });
+    })();
+
+    /* ── EYEBROW GLOW NA ENTRADA ── */
+    (function() {
+      var eyebrows = document.querySelectorAll('.section-eyebrow');
+      var eo = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('eyebrow-lit');
+            eo.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+      eyebrows.forEach(function(e) { eo.observe(e); });
+    })();
+
+    /* ── LGPD ── */
+    (function() {
+      var banner = document.getElementById('lgpd-banner');
+      var ac = document.getElementById('lgpdAceitar');
+      var re = document.getElementById('lgpdRecusar');
+      if (!localStorage.getItem('lgpd_atommo')) setTimeout(function() { banner.classList.add('show'); }, 1500);
+      function dismiss() { banner.classList.remove('show'); localStorage.setItem('lgpd_atommo', '1'); }
+      ac.addEventListener('click', dismiss);
+      re.addEventListener('click', dismiss);
+    })();
+  </script>
+</body>
+</html>
