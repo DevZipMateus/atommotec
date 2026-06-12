@@ -27,119 +27,63 @@
 
     :root {
       --navy:      #0C1E52;
-      --navy-dark: #070E2A;
       --azul:      #1548B0;
+      --azul-2:    #1A5ED4;
       --ciano:     #28AADC;
       --ciano-2:   #4CC4F0;
       --branco:    #FFFFFF;
+      --radius:    8px;
       --trans:     .3s ease;
+      --header-h:  72px;
       --ff-titulo: 'Exo 2', sans-serif;
       --ff-corpo:  'Inter', sans-serif;
     }
 
-    /* ── HEADER 80px ── */
-    #header {
-      position: fixed; top: 0; left: 0; right: 0;
-      height: 80px; z-index: 900;
-      background: var(--navy-dark);
-      border-bottom: 1px solid rgba(40,170,220,.2);
-      box-shadow: 0 2px 20px rgba(0,0,0,.3);
-    }
+    /* ── HEADER (idêntico ao index) ── */
+    #header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--header-h); background: var(--branco); border-bottom: 1px solid rgba(12,30,82,.1); transition: box-shadow .3s; }
+    #header.scrolled { box-shadow: 0 4px 24px rgba(12,30,82,.14); }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; height: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .logo-wrap img { height: 52px; width: auto; }
 
-    .header-inner {
-      max-width: 1200px; margin: 0 auto;
-      padding: 0 24px; height: 100%;
-      display: flex; align-items: center; justify-content: space-between;
-    }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a { color: var(--navy); font-family: var(--ff-titulo); font-size: .78rem; font-weight: 600; letter-spacing: .5px; text-transform: uppercase; transition: color .2s; position: relative; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--ciano); transition: width .25s; }
+    .nav-links a:hover { color: var(--ciano); }
+    .nav-links a:hover::after { width: 100%; }
 
-    .logo-link { display: flex; align-items: center; }
-    .logo-header {
-      height: 50px; width: auto;
-      filter: brightness(0) invert(1);
-    }
+    .nav-vitrine { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; background: rgba(40,170,220,.12); color: var(--ciano) !important; font-family: var(--ff-titulo); font-size: .74rem !important; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; border-radius: var(--radius); border: 1.5px solid rgba(40,170,220,.4); transition: background .2s, color .2s, transform .15s !important; }
+    .nav-vitrine::after { display: none !important; }
+    .nav-vitrine:hover { background: var(--ciano) !important; color: var(--navy) !important; border-color: var(--ciano); transform: translateY(-1px); }
 
-    .nav-desktop { display: flex; gap: 26px; align-items: center; }
-
-    .nav-link {
-      font-family: var(--ff-titulo); font-size: .76rem;
-      font-weight: 600; letter-spacing: .5px; text-transform: uppercase;
-      color: rgba(255,255,255,.8); position: relative;
-      transition: color var(--trans);
-    }
-    .nav-link::after {
-      content: ''; position: absolute; bottom: -4px; left: 0;
-      width: 0; height: 2px; background: var(--ciano);
-      transition: width var(--trans);
-    }
-    .nav-link:hover { color: var(--ciano); }
-    .nav-link:hover::after { width: 100%; }
-
-    .btn-voltar {
-      display: inline-flex; align-items: center; gap: 7px;
-      padding: 8px 18px;
-      background: rgba(40,170,220,.15);
-      color: var(--ciano-2);
-      font-family: var(--ff-titulo); font-size: .76rem; font-weight: 700;
-      letter-spacing: .5px; text-transform: uppercase;
-      border-radius: 6px; border: 1.5px solid rgba(40,170,220,.4);
-      transition: background var(--trans), color var(--trans), transform var(--trans);
-    }
-    .btn-voltar:hover {
-      background: var(--ciano); color: var(--navy);
-      border-color: var(--ciano); transform: translateY(-1px);
-    }
+    .nav-cta { background: var(--azul) !important; color: var(--branco) !important; padding: 9px 20px; border-radius: var(--radius); font-weight: 700 !important; transition: background .2s, transform .15s !important; }
+    .nav-cta::after { display: none !important; }
+    .nav-cta:hover { background: var(--azul-2) !important; transform: translateY(-1px); color: var(--branco) !important; }
 
     /* ── MENU MOBILE ── */
-    .menu-toggle {
-      display: none; flex-direction: column; gap: 5px;
-      background: none; border: none; cursor: pointer; padding: 4px;
-    }
-    .menu-toggle span {
-      display: block; width: 24px; height: 2px;
-      background: var(--branco); border-radius: 2px; transition: .3s;
-    }
-    .menu-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .menu-toggle.open span:nth-child(2) { opacity: 0; }
-    .menu-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 6px; cursor: pointer; }
+    .hamburger span { display: block; width: 26px; height: 2px; background: var(--navy); border-radius: 2px; transition: .3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-    #navMenu {
-      position: fixed; top: 80px; left: 0; right: 0;
-      background: var(--navy-dark); border-top: 2px solid var(--ciano);
-      max-height: 0; overflow: hidden; transition: max-height .35s ease; z-index: 999;
-      display: none;
-    }
-    #navMenu.open { max-height: 360px; }
+    #navMenu { display: none; position: fixed; top: var(--header-h); left: 0; right: 0; background: var(--navy); border-top: 2px solid var(--ciano); max-height: 0; overflow: hidden; transition: max-height .35s ease; z-index: 999; }
+    #navMenu.open { max-height: 500px; }
     #navMenu ul { padding: 1rem 1.5rem 1.5rem; }
-    #navMenu ul li a {
-      display: flex; align-items: center; padding: 13px 0;
-      color: rgba(255,255,255,.85); font-family: var(--ff-titulo);
-      font-size: .9rem; font-weight: 600; letter-spacing: .5px; text-transform: uppercase;
-      border-bottom: 1px solid rgba(255,255,255,.08); transition: color .2s, padding-left .2s;
-    }
+    #navMenu ul li a { display: flex; align-items: center; padding: 14px 0; color: rgba(255,255,255,.85); font-family: var(--ff-titulo); font-size: .9rem; font-weight: 600; letter-spacing: .5px; text-transform: uppercase; border-bottom: 1px solid rgba(255,255,255,.08); transition: color .2s, padding-left .2s; }
     #navMenu ul li:last-child a { border-bottom: none; }
     #navMenu ul li a:hover { color: var(--ciano); padding-left: 8px; }
 
-    .nav-overlay {
-      position: fixed; inset: 0; background: rgba(0,0,0,.55);
-      z-index: 998; opacity: 0; pointer-events: none; transition: opacity var(--trans);
-    }
-    .nav-overlay.active { opacity: 1; pointer-events: all; }
-
     /* ── IFRAME ── */
-    #vitrineFrame {
-      position: fixed; top: 80px; left: 0;
-      width: 100%; border: none; display: block;
-    }
+    #vitrineFrame { position: fixed; top: var(--header-h); left: 0; width: 100%; border: none; display: block; }
 
     /* ── RESPONSIVO ── */
     @media (max-width: 1023px) {
-      .nav-desktop { display: none; }
-      .menu-toggle { display: flex; }
-      #navMenu     { display: block; }
+      .nav-links { display: none; }
+      .hamburger  { display: flex; }
+      #navMenu    { display: block; }
     }
-
     @media (max-width: 480px) {
-      .logo-header { height: 40px; }
+      .logo-wrap img { height: 40px; }
     }
   </style>
 </head>
@@ -148,40 +92,48 @@
   <!-- ── HEADER ── -->
   <header id="header">
     <div class="header-inner">
-      <a href="index.html" class="logo-link">
-        <img src="images/logo.png" alt="Atommotec" class="logo-header">
+      <a href="index.html" class="logo-wrap">
+        <img src="images/logo.png" alt="Atommotec">
       </a>
-      <ul class="nav-desktop">
-        <li><a href="index.html" class="nav-link">Início</a></li>
-        <li><a href="index.html#sobre" class="nav-link">Sobre</a></li>
-        <li><a href="index.html#servicos" class="nav-link">Serviços</a></li>
-        <li><a href="index.html#planos" class="nav-link">Planos</a></li>
-        <li><a href="index.html#contato" class="nav-link">Contato</a></li>
-        <li><a href="index.html" class="btn-voltar"><i class="fas fa-arrow-left"></i> Voltar ao site</a></li>
-      </ul>
-      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
+      <nav role="navigation" aria-label="Menu principal">
+        <ul class="nav-links">
+          <li><a href="index.html">Início</a></li>
+          <li><a href="index.html#sobre">Sobre</a></li>
+          <li><a href="index.html#servicos">Serviços</a></li>
+          <li><a href="index.html#planos">Planos</a></li>
+          <li><a href="index.html#avaliacoes">Avaliações</a></li>
+          <li><a href="index.html#contato">Contato</a></li>
+          <li><a href="vitrine.html" class="nav-vitrine"><i class="fa-solid fa-store"></i> Vitrine</a></li>
+          <li>
+            <a href="https://wa.me/553135343329" target="_blank" rel="noopener noreferrer" class="nav-cta">
+              <i class="fa-brands fa-whatsapp"></i> WhatsApp
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
   </header>
 
-  <!-- ── NAV MOBILE ── -->
-  <nav id="navMenu" aria-hidden="true">
+  <!-- NAV MOBILE -->
+  <nav id="navMenu" aria-label="Menu mobile" aria-hidden="true">
     <ul>
       <li><a href="index.html">Início</a></li>
-      <li><a href="index.html#sobre">Sobre</a></li>
+      <li><a href="index.html#sobre">Sobre nós</a></li>
       <li><a href="index.html#servicos">Serviços</a></li>
       <li><a href="index.html#planos">Planos</a></li>
+      <li><a href="index.html#avaliacoes">Avaliações</a></li>
       <li><a href="index.html#contato">Contato</a></li>
-      <li><a href="index.html" style="color:var(--ciano)"><i class="fas fa-arrow-left"></i>&nbsp; Voltar ao site</a></li>
+      <li><a href="vitrine.html" style="color:var(--ciano-2)"><i class="fa-solid fa-store"></i>&nbsp; Vitrine online</a></li>
     </ul>
   </nav>
-  <div class="nav-overlay" id="navOverlay"></div>
 
   <!-- ── IFRAME VITRINE ── -->
   <iframe
     id="vitrineFrame"
-    src="https://atommotec3.egestor.com.br/vitrine/"
+    src="https://atommotec2.egestor.com.br/vitrine/"
     title="Vitrine Atommotec"
     allowfullscreen>
   </iframe>
@@ -195,27 +147,22 @@
     updateFrame();
 
     /* ── MENU MOBILE ── */
-    var toggle   = document.getElementById('menuToggle');
-    var navMenu  = document.getElementById('navMenu');
-    var overlay  = document.getElementById('navOverlay');
+    var hamburger = document.getElementById('hamburgerBtn');
+    var navMenu   = document.getElementById('navMenu');
 
-    function openMenu() {
-      navMenu.classList.add('open');
-      overlay.classList.add('active');
-      toggle.classList.add('open');
-    }
-    function closeMenu() {
-      navMenu.classList.remove('open');
-      overlay.classList.remove('active');
-      toggle.classList.remove('open');
-    }
-
-    toggle.addEventListener('click', function() {
-      navMenu.classList.contains('open') ? closeMenu() : openMenu();
+    hamburger.addEventListener('click', function() {
+      var isOpen = navMenu.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+      navMenu.setAttribute('aria-hidden', !isOpen);
     });
-    overlay.addEventListener('click', closeMenu);
     navMenu.querySelectorAll('a').forEach(function(a) {
-      a.addEventListener('click', closeMenu);
+      a.addEventListener('click', function() {
+        navMenu.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        navMenu.setAttribute('aria-hidden', 'true');
+      });
     });
   </script>
 </body>
